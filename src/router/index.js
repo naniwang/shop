@@ -14,7 +14,7 @@ import mainFollow from "../views/mainFollow.vue"
 import followDetail from  "../views/followdetail.vue"
 import followAround from "../views/followaround.vue"
 import followFind from "../views/followFind.vue"
-
+// import Discuss from "../views/discuss.vue"
 //sue  进行挂载使用router ，全局可以使用
 Vue.use(Router)
 
