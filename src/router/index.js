@@ -25,7 +25,7 @@ export default new Router({
     {
       path: '/',
       name: 'Index',  
-      redirect:"/login",
+//    redirect:"/login",
       component: Index,
       children:[
         {
@@ -58,7 +58,7 @@ export default new Router({
     {
       path:"/mainindex",
       name:"mainIndex",
-      redirect:"/mainfollow",
+//    redirect:"/mainfollow",
       component:mainIndex, 
       children:[
         {
