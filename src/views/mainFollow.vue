@@ -14,7 +14,7 @@
                     <van-col span="4"></van-col>
                     <van-col span="14" class="btn" style="margin-top:10px;">
                         <van-button type="default">收藏</van-button>
-                        <van-button type="default">评论</van-button>
+                        <van-button type="default" to="/discuss">评论</van-button>
                         <van-button type="default">点赞</van-button>
                     </van-col>
                 </van-row>
