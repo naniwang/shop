@@ -9,7 +9,7 @@
             <van-col span="12" style="margin-top:11px;"> 
                 <van-row type="flex"  class="FlwFind" justify="space-between;">
                     <van-col span="6"><router-link to="/mainfollow" tag="span">关注</router-link></van-col>
-                    <van-col span="6"><router-link to="/followfind" tag="span">发现</router-link></van-col>
+                    <van-col span="6"><router-link to="/followfind" tag="span" style="color:blue;">发现</router-link></van-col>
                     <van-col span="6"><router-link to="/followaround" tag="span">周围 </router-link></van-col>
                 </van-row>
             </van-col>

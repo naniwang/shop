@@ -72,7 +72,7 @@
                     <button to="">收藏</button>
                 </van-col>
                 <van-col offset="3" span="3">
-                    <button to="">评论</button>
+                    <button @click="tk">评论</button>
                 </van-col>
                 <van-col offset="3" span="3">
                     <button to="">点赞</button>
@@ -116,7 +116,6 @@ export default {
             params:{id:_this.$route.params.id},
         }).then((data)=>{
             _this.list = data.data.data
-            console.log(data.data.data)
         })
     },
     methods: {
@@ -124,7 +123,10 @@ export default {
             this.show = true
         },
         goback(){
-            this.$router.push("/mainfollow")
+            this.$router.go(-1)
+        },
+        tk(){
+            this.$router.push("/talk")
         }
     },
 }
