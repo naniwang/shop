@@ -16,6 +16,12 @@ import followAround from "../views/followaround.vue"
 import followFind from "../views/followFind.vue"
 // import Discuss from "../views/discuss.vue"
 import Talk from "../views/talk.vue"
+import flwFindRecommend from "../views/flwfindrecommend.vue"
+import flwFindCosmetic from "../views/flwfindcosmetic.vue"
+import flwFindCare from "../views/flwfindcare.vue"
+import flwFindVideo from "../views/flwfindvideo.vue"
+
+
 //sue  进行挂载使用router ，全局可以使用
 Vue.use(Router)
 
@@ -75,7 +81,30 @@ export default new Router({
         {
           path:"/followfind",
           name:"followFind",
-          component:followFind
+          redirect:"/flwfindrecommend",
+          component:followFind,
+          children:[
+            {
+              path:"/flwfindrecommend",
+              name:"flwFindRecommend",
+              component:flwFindRecommend
+            },
+            {
+              path:"/flwfindcosmetic",
+              name:"flwFindCosmetic",
+              component:flwFindCosmetic
+            },
+            {
+              path:"/flwfindcare",
+              name:"flwFindCare",
+              component:flwFindCare
+            },
+            {
+              path:"/flwfindvideo",
+              name:"flwFindVideo",
+              component:flwFindVideo
+            }
+          ]
         },
         {
           path:"/followaround",

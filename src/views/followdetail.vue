@@ -124,7 +124,7 @@ export default {
             this.show = true
         },
         goback(){
-            this.$router.go(-1)
+            this.$router.push("/mainfollow")
         }
     },
 }
