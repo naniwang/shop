@@ -104,7 +104,8 @@ export default {
         return{
             id:'',
             list:"",
-            show:false
+            show:false,
+            value:"",
         }
     },
     mounted() {

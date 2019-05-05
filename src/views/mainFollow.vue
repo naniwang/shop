@@ -54,7 +54,8 @@ export default {
     name:"mainFollow",
     data:function(){
         return{
-            list:""
+            list:"",
+            value:"",
         }
     },
     mounted() {

@@ -1,11 +1,5 @@
 <template>
-<div>
-    <div>
-         
-    </div>
-
-
-    
+<div> 
     <van-tabbar v-model="active" active-color="#262626" fixed style="background:#E8E8E8;font-size:20px">
         <van-tabbar-item fixed style="font-size:20px;" to="/mainindex">首页</van-tabbar-item>
         <van-tabbar-item style="font-size:20px;" to="/shopping" >商城</van-tabbar-item>
@@ -24,8 +18,8 @@ export default {
     data:function(){
         return{
             isfalse:'color1',
-            value:"",
             active:0
+             
         }
     },
     methods:{
