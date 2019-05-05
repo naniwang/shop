@@ -1,4 +1,29 @@
 <template> 
+<div>
+     <van-row type="flex" justify="space-between" style="background:#E8E8E8;">
+                 <van-col span="8">
+                 <van-row type="flex" justify="space-between">
+                    <van-col span="4" style="width:39px;height:39px;border:1px solid #cecece;margin-top:1px;margin-left:8px;border-radius:50%;background:white;"></van-col>
+                 </van-row>
+             </van-col>
+            <van-col span="12" style="margin-top:11px;">
+                <van-row type="flex" justify="space-between; ">
+                    <van-col span="6"><router-link to="/mainfollow" tag="span">关注</router-link></van-col>
+                    <van-col span="6"><router-link to="/followfind" tag="span">发现</router-link></van-col>
+                    <van-col span="6"><router-link to="/followaround" tag="span">周围</router-link></van-col>
+                </van-row>
+            </van-col>
+            <van-col span="4"></van-col>
+        </van-row>
+        <van-row type="flex" justify="center"> 
+            <van-col span="20">
+                <van-search placeholder='大家都在搜索"玩转万圣节派对"' v-model="value" input-align="center"/>
+            </van-col> 
+        </van-row>
+
+
+
+
         <ul>
             <li v-for="(item, index) in list" :key="index" style="border-bottom:3px solid #BBBBBB;width:100%">
                 <van-row type="flex" justify="center" style="margin:20px 0">
@@ -14,13 +39,13 @@
                     <van-col span="4"></van-col>
                     <van-col span="14" class="btn" style="margin-top:10px;">
                         <van-button type="default">收藏</van-button>
-                        <van-button type="default" to="/discuss">评论</van-button>
+                        <van-button type="default" to="/talk">评论</van-button>
                         <van-button type="default">点赞</van-button>
                     </van-col>
                 </van-row>
-
             </li>
         </ul>
+</div>
           
 </template>
 <script>

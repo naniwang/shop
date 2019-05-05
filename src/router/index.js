@@ -81,8 +81,13 @@ export default new Router({
           path:"/followaround",
           name:"followAround",
           component:followAround
-        }
+        },
       ]
+    },
+    {
+      path:"/talk",
+      name:"Talk",
+      component:Talk
     },
     {
       path:"/shopping",
