@@ -20,7 +20,9 @@ import flwFindRecommend from "../views/flwfindrecommend.vue"
 import flwFindCosmetic from "../views/flwfindcosmetic.vue"
 import flwFindCare from "../views/flwfindcare.vue"
 import flwFindVideo from "../views/flwfindvideo.vue"
-
+import shopRecommend from "../views/shoprecommend.vue"
+import shopCosmetic from "../views/shopcosmetic.vue"
+import shopCare from "../views/shopcare.vue"
 
 //sue  进行挂载使用router ，全局可以使用
 Vue.use(Router)
@@ -121,7 +123,25 @@ export default new Router({
     {
       path:"/shopping",
       name:"Shopping",
-      component:Shopping
+      redirect:"/shoprecommend",
+      component:Shopping,
+      children:[
+        {
+          path:"/shoprecommend",
+          name:"shopRecommend",
+          component:shopRecommend
+        },
+        {
+          path:"/shopcosmetic",
+          name:"shopCosmetic",
+          component:shopCosmetic
+        },
+        {
+          path:"/shopcare",
+          name:"shopCare",
+          component:shopCare
+        }
+      ]
     },
     {
       path:"/message",

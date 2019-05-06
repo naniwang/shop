@@ -1,27 +1,15 @@
 <template>
-<div>
-    <van-row type="flex" v-for="(item, index) in list" :key="index">
-        <van-col span="8">  
+    <van-row type="flex" tag="ul" style="flex-wrap:wrap;margin-top:13px" justify="space-around" > 
+        <li v-for="(item, index) in list" :key="index" style="width:43%;margin-top:13px;;border:1px solid #cecece">
             <router-link :to="'/followdetail/'+item.pid">
-                <img style="width:150px;height:214px" :src="item.pimg"/>
+                <img style="width:100%;height:214px" :src="item.pimg"/>
             </router-link>
-            <p style="width:150px">{{item.pdesc}}</p>
-            <img style="width:34px;height:34px;border-radius:50%" :src="item.pimg"/>  
-        </van-col>
-    </van-row>
-    <!-- <ul>
-        <li style="float:left;" v-for="(item, index) in list" :key="index">
-            <router-link :to="'/followdetail/'+item.pid">
-                <img style="width:150px;height:214px" :src="item.pimg"/>
-            </router-link>
-            <p>{{item.pdesc}}</p>
-            <img style="width:34px;height:34px;border-radius:50%" :src="item.pimg"/>
+            <p style="font-size:12px;">{{item.pdesc}}</p>
+            <img style="width:34px;height:34px;border-radius:50%;margin-right:15px" :src="item.pimg"/>
+            <span style="font-size:12px">{{item.pname}}</span>
+            <button @click="up" style="border:none;background:white">点赞</button>
         </li>
-    </ul> -->
-
-
-
-</div>
+    </van-row>
 </template>
 <script>
 import axios from "axios"
@@ -29,7 +17,13 @@ export default {
     name:'flwFindRecommend',
     data:function(){
         return{
-            list:[]
+            list:[],
+        }
+    },
+     methods: {
+        up(){
+            // 点赞
+            console.log("aaa")
         }
     },
     mounted() {
@@ -45,5 +39,7 @@ export default {
 }
 </script>
 <style scoped>
-
+li{
+    list-style: none;
+} 
 </style>

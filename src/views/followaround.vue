@@ -21,6 +21,18 @@
             </van-col> 
         </van-row>
 
+        <van-row type="flex" tag="ul" style="flex-wrap:wrap;" justify="space-around" > 
+            <li v-for="(item, index) in list" :key="index" style="width:43%;;border:1px solid #cecece;margin-top:13px">
+                <router-link :to="'/followdetail/'+item.pid">
+                    <img style="width:100%;height:214px" :src="item.pimg"/>
+                </router-link>
+                <div style="font-size:12px;">{{item.pdesc}}</div>
+                <img style="width:34px;height:34px;border-radius:50%;margin-right:15px;" :src="item.pimg"/>
+                <span style="font-size:12px;margin-right:30px">{{item.pname}}</span>
+                <button @click="up" style="border:none;background:white">点赞</button>
+            </li>
+        </van-row>
+
         <van-popup v-model="show" position="left" :overlay="true" style="width:80%;height:100%" class="more">
             <div style="width:150px;height:30px;margin-left:50px;line-height:30px;font-size:20px;margin-top:35px;margin-bottom:30px;">更多</div>
             <div><router-link to="" tag="span">我的关注</router-link></div>
@@ -39,19 +51,35 @@
     </div>
 </template>
 <script>
+import axios from "axios"
 export default {
     name:"followAround",
     data:function(){
         return{
             show:false,
-            value:""
+            value:"",
+            list:[]
         }
     },
     methods: {
         btn(){
             this.show = true
+        },
+        up(){
+            // 点赞
+            console.log("aaa")
         }
     },
+     mounted() {
+        var _this = this
+        axios({
+            method:"get",
+            url:"http://jx.xuzhixiang.top/ap/api/productlist.php",
+            params:{uid:1887}
+        }).then((data)=>{
+            _this.list = data.data.data
+        })
+    }
 }
 </script>
 <style scoped>

@@ -54,7 +54,7 @@ export default {
     data:function(){
         return{
             show:false,
-            value:""
+            value:"",
         }
     },
     methods: {
