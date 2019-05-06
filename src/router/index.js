@@ -23,6 +23,9 @@ import flwFindVideo from "../views/flwfindvideo.vue"
 import shopRecommend from "../views/shoprecommend.vue"
 import shopCosmetic from "../views/shopcosmetic.vue"
 import shopCare from "../views/shopcare.vue"
+import shopDetail from "../views/shopdetail.vue"
+import cartWish from "../views/cartwish.vue"
+
 
 //sue  进行挂载使用router ，全局可以使用
 Vue.use(Router)
@@ -142,6 +145,16 @@ export default new Router({
           component:shopCare
         }
       ]
+    },
+    {
+      path:"/shopdetail/:id",
+      name:"shopDetial",
+      component:shopDetail
+    },
+    {
+      path:"/cartwish/:id",
+      name:"cartWish",
+      component:cartWish
     },
     {
       path:"/message",
