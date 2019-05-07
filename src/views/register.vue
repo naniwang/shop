@@ -11,20 +11,7 @@
         placeholder="请输入用户名"
         ref="yhm"
         />
-        <van-field
-        v-model="phone"
-        label="手机号"
-        placeholder="请输入手机号"
-        />
-        <van-field
-            v-model="sms"
-            center
-            clearable
-            label="短信验证码"
-            placeholder="请输入短信验证码"
-            >
-            <van-button slot="button" size="small" type="primary">发送验证码</van-button>
-        </van-field>
+       
         <van-field
             v-model="password"
             type="password"
@@ -42,6 +29,9 @@
     <div class="register">
         <van-button type="info" size="large" @click="register()" style="height:40px;background:#F4F4F4;border:none;line-height:40px;color:#8C8C8C;">注册</van-button>   
     </div>
+
+    <van-popup v-model="show">用户名或密码错误,请重新输入!!!用户名/密码为4到16位(字母,数字,下划线,减号)</van-popup>
+
 </div>
 </template>
 
@@ -57,7 +47,8 @@ export default {
             password1:"",
             phone:"",
             sms:"",
-            tit:"返回"
+            tit:"返回",
+            show:false
         }
     },
     mounted(){
@@ -89,14 +80,26 @@ export default {
                 _this.password = ""
             }
 
+            var mm1 = null 
+            //密码正则，4到16位（字母，数字，下划线，减号）
+            var reg = /^[a-zA-Z0-9_-]{4,16}$/;
+            if(reg.test(_this.password1)){
+                mm1 = true
+            } else {
+                mm1 = false
+                _this.password1 = ""
+            }
+
+
             axios({
                 method:"get",
                 url:"http://jx.xuzhixiang.top/ap/api/reg.php",
                 params:{username:_this.username,password:_this.password},
             }).then(function(data){
-                if(data.data.code == 1 && yhm && mm){
+                if(data.data.code == 1 && yhm && mm && mm1){
                     _this.$router.push("/login")
                 }else {
+                    _this.show = true
                     _this.$router.push("/register")
                 }
             })
