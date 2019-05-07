@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <van-row type="flex" justify="center" class="biaoti">
-            <van-col span="16" class="biaoti" style="color:#888888;font-size:28px">用户名密码登陆</van-col> 
+            <van-col span="24" class="biaoti" style="color:#888888;font-size:28px;text-align:center;">手机号密码登陆</van-col> 
         </van-row>
         <van-cell-group >
             <van-field

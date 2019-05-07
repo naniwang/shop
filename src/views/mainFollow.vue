@@ -30,7 +30,7 @@
             <div style="margin-top:30px;"><router-link to="" tag="span">购物车</router-link></div>
             <div><router-link to="" tag="span">订单</router-link></div>
             <div><router-link to="" tag="span">PIN劵</router-link></div>
-            <div><router-link to="" tag="span">心愿单</router-link></div> 
+            <div><router-link to="/cartwish" tag="span">心愿单</router-link></div> 
             <div style="margin-bottom:23px;"><router-link to="" tag="span">pin会员卡</router-link></div> 
             <p></p>
             <div style="margin-top:22px;"><router-link to="" tag="span">帮助与客服</router-link></div> 

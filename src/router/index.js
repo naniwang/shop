@@ -25,6 +25,14 @@ import shopCosmetic from "../views/shopcosmetic.vue"
 import shopCare from "../views/shopcare.vue"
 import shopDetail from "../views/shopdetail.vue"
 import cartWish from "../views/cartwish.vue"
+import shopBuy from "../views/shopbuy.vue"
+import shopLimit from "../views/shoplimit.vue"
+import shopLimit8 from "../views/shoplimit8.vue"
+import shopLimit9 from "../views/shoplimit9.vue"
+import shopLimit10 from "../views/shoplimit10.vue"
+import shopLimit11 from "../views/shoplimit11.vue"
+
+
 
 
 //sue  进行挂载使用router ，全局可以使用
@@ -157,6 +165,39 @@ export default new Router({
       component:cartWish
     },
     {
+      path:"/shopbuy/:id",
+      name:"shopBuy",
+      component:shopBuy
+    },
+    {
+      path:"/shoplimit",
+      name:"shopLimit",
+      redirect:"/shoplimit8",
+      component:shopLimit,
+      children:[
+        {
+          path:"/shoplimit8",
+          name:"shopLimit8",
+          component:shopLimit8
+        },
+        {
+          path:"/shoplimit9",
+          name:"shopLimit9",
+          component:shopLimit9
+        },
+        {
+          path:"/shoplimit10",
+          name:"shopLimit10",
+          component:shopLimit10
+        },
+        {
+          path:"/shoplimit11",
+          name:"shopLimit11",
+          component:shopLimit11
+        }
+      ]
+    },
+    {
       path:"/message",
       name:"Message",
       component:Message
@@ -164,7 +205,8 @@ export default new Router({
     {
       path:"/me",
       name:"Me",
-      component:Me
+      redirect:"/login",
+      component:Me,
     } 
   ]
 })

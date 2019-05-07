@@ -1,21 +1,21 @@
 <template>
-<div>
-    <div >
+<div style="z-index:1000">
+    <div>
         <van-row type="flex" style="background:#E8E8E8 100%;">
-            <van-col span="6">
+            <van-col span="4">
                 <van-row type="flex">
                     <van-col span="4" style="width:39px;height:39px;border:1px solid #cecece;margin-top:1px;margin-left:8px;border-radius:50%;background:white;">
                         
                     </van-col>
                 </van-row>
             </van-col> 
-            <van-col span="24">
-                <van-search style="margin-top:5px;height:29px;" placeholder='大家都在搜索"玩转万圣节派对"' v-model="value" background="#E8E8E8"/>
+            <van-col span="19">
+                <input type="text" style="margin-top:8px;height:20px;width:100%;border:none;border-radius:3px;padding-left:3px" placeholder='大家都在搜索"玩转万圣节派对"' v-model="value" >
             </van-col> 
         </van-row> 
     </div>
 
-    <van-tabbar v-model="active" active-color="#262626" fixed style="background:#E8E8E8;font-size:20px">
+    <van-tabbar v-model="active" active-color="#262626" fixed style="position:fixed;bottom:-1px;left:0;background:#E8E8E8;font-size:20px">
         <van-tabbar-item fixed style="font-size:20px;color:#8c8c8c" to="/mainindex">首页</van-tabbar-item>
         <van-tabbar-item style="font-size:20px;color:#262626" to="/shopping">商城</van-tabbar-item>
         <van-tabbar-item style="font-size:20px;font-weight:900"><van-icon name="plus"/></van-tabbar-item>

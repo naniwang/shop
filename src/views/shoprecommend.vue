@@ -1,13 +1,13 @@
 <template>
 <div>
 
-    <van-row type="flex" justify="space-around" style="background:#F8F8F8 100%;">
+    <van-row type="flex" justify="space-around" style="background:white 100%;height:36px;line-height:36px;background:#FDFDFD 100%;">
         <van-col span="4"><router-link to="/shoprecommend" tag="span" style="color:#101010">推荐</router-link></van-col>
         <van-col span="4"><router-link to="/shopcare" tag="span">护肤</router-link></van-col>
         <van-col span="4"><router-link to="/shopcosmetic" tag="span">彩妆</router-link></van-col>
     </van-row>
 
-    <div style="padding:0 20px 0 19px">
+    <div style="padding:0 20px 0 19px;">
         <van-swipe :autoplay="2000" indicator-color="white">
             <van-swipe-item v-for="(item, index) in list" :key="index">
                 <img style="width:100%;" :src="item.banner_img_url"/>
@@ -33,20 +33,20 @@
         </van-row> 
 
         <van-row type="flex" justify="space-between" style="margin-top:10px;">
-            <van-col span="10">
-                <router-link to="" tag="div">
-                    <div style="width:100%;padding-left:10px;font-size:14px;margin-bottom:10px">双十一限时购</div>
+            <van-col span="10" style="background:#F8F8F8 100%;">
+                <router-link to="/shoplimit" tag="div">
+                    <div style="width:100%;padding-left:10px;font-size:14px;margin-bottom:10px;">双十一限时购</div>
                     <van-row type="flex" justify="space-around">
-                        <van-col span="10" style="height:50px;width:60px;background:#8c8c8c"><img src=""></van-col>
+                        <van-col span="10" style="height:50px;width:60px;background:#8c8c8c;margin-bottom:10px;"><img src=""></van-col>
                         <van-col span="10" style="height:50px;width:60px;background:#8c8c8c"><img src=""></van-col>
                     </van-row>
                 </router-link>
             </van-col>
-            <van-col span="10">
+            <van-col span="10" style="background:#F8F8F8 100%;">
                 <router-link to="" tag="div">
                     <div style="width:100%;padding-left:10px;font-size:14px;margin-bottom:10px">双十一预售</div>
                     <van-row type="flex" justify="space-around">
-                        <van-col span="10" style="height:50px;width:60px;background:#8c8c8c"><img src=""></van-col>
+                        <van-col span="10" style="height:50px;width:60px;background:#8c8c8c;margin-bottom:10px;"><img src=""></van-col>
                         <van-col span="10" style="height:50px;width:60px;background:#8c8c8c"><img src=""></van-col>
                     </van-row>
                 </router-link>
@@ -83,7 +83,7 @@
                             <img src=""/>
                         </van-col>
                     </van-row> 
-                </router-link>
+                </router-link>    
             </van-col>
         </van-row>
 
