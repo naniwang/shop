@@ -14,7 +14,7 @@ import mainFollow from "../views/mainFollow.vue"
 import followDetail from  "../views/followdetail.vue"
 import followAround from "../views/followaround.vue"
 import followFind from "../views/followFind.vue"
-// import Discuss from "../views/discuss.vue"
+   import Discuss from "../views/discuss.vue"
 //sue  进行挂载使用router ，全局可以使用
 Vue.use(Router)
 
@@ -25,7 +25,7 @@ export default new Router({
     {
       path: '/',
       name: 'Index',  
-//    redirect:"/login",
+      redirect:"/login",
       component: Index,
       children:[
         {
@@ -58,7 +58,7 @@ export default new Router({
     {
       path:"/mainindex",
       name:"mainIndex",
-//    redirect:"/mainfollow",
+      redirect:"/mainfollow",
       component:mainIndex, 
       children:[
         {
@@ -97,6 +97,11 @@ export default new Router({
       path:"/me",
       name:"Me",
       component:Me
-    } 
+    },
+    {
+      path:"/discuss",
+      name:"Discuss",
+      component:Discuss
+    }  
   ]
 })

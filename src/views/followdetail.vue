@@ -30,7 +30,7 @@ export default {
     deta:function(){
         return{
             id:'',
-            list:""
+            list:[]
         }
     },
     mounted() {
@@ -40,7 +40,7 @@ export default {
             url:"http://jx.xuzhixiang.top/ap/api/detail.php",
             params:{id:_this.$route.params.id},
         }).then((data)=>{
-            _this.list = data.data.data
+            _this.list = data.data
         })
     },
 }
