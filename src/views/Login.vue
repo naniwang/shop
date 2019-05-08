@@ -17,13 +17,13 @@
         </van-cell-group>
         <div class="login">
             <van-button type="primary" size="large" @click="login({username:username,password:password})" style="height:40px;background:#F4F4F4;border:none;line-height:40px;color:#8C8C8C;">登陆</van-button>
-            <van-row type="flex" justify="space-between" style="margin-top:5px">
-                <van-col span="8"><button type="default" @click="forget" style="background:white;border:none;color:#888">忘记密码</button></van-col> 
-                <van-col span="8"><button type="default" @click="phonelogin" style="background:white;border:none;color:#888">验证码登陆</button> </van-col>
+            <van-row type="flex" style="margin-top:5px">
+                <van-col span="12"><button type="default" @click="forget" style="background:white;border:none;color:#888">忘记密码</button></van-col> 
+                <van-col span="12">
+                    <router-link to="/phonelogin" style="color:#888;float:right">验证码登陆</router-link>
+                </van-col>
             </van-row>
         </div>
-
-
     </div>
 </template>
 <script>

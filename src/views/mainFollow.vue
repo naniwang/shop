@@ -3,7 +3,7 @@
      <van-row type="flex" justify="space-between" style="background:#E8E8E8;">
                  <van-col span="8">
                  <van-row type="flex" justify="space-between">
-                 <van-col span="4" tag="button" style="width:39px;height:39px;border:1px solid #cecece;margin-top:1px;margin-left:8px;border-radius:50%;background:white;"><img @click="btn()" src=""></van-col>
+                 <van-col span="4" tag="button" style="width:39px;height:39px;border:1px solid #cecece;margin-top:1px;margin-left:8px;border-radius:50%;background:white;"><img style="border:none;" @click="btn()" src=""></van-col>
                  </van-row>
              </van-col>
             <van-col span="12" style="margin-top:11px;"> 
@@ -22,19 +22,26 @@
         </van-row>
 
         <van-popup v-model="show" position="left" :overlay="true" style="width:80%;height:100%" class="more">
-            <div style="width:150px;height:30px;margin-left:50px;line-height:30px;font-size:20px;margin-top:35px;margin-bottom:30px;">更多</div>
-            <div><router-link to="" tag="span">我的关注</router-link></div>
-            <div><router-link to="" tag="span">我的收藏</router-link></div>
-            <div style="margin-bottom:19px;"><router-link to="" tag="span">我的草稿</router-link></div>
-            <p></p>
-            <div style="margin-top:30px;"><router-link to="" tag="span">购物车</router-link></div>
-            <div><router-link to="" tag="span">订单</router-link></div>
-            <div><router-link to="" tag="span">PIN劵</router-link></div>
-            <div><router-link to="/cartwish" tag="span">心愿单</router-link></div> 
-            <div style="margin-bottom:23px;"><router-link to="" tag="span">pin会员卡</router-link></div> 
-            <p></p>
-            <div style="margin-top:22px;"><router-link to="" tag="span">帮助与客服</router-link></div> 
-            <div><router-link to="" tag="span">设置</router-link></div> 
+            <van-row type="flex" justify="sapce-between">
+                <van-col span="4"></van-col>
+                <van-col>
+                    <div style="width:150px;height:30px;margin-left:50px;line-height:30px;font-size:20px;margin-top:35px;margin-bottom:30px;">更多</div>
+                    <div><router-link to="" tag="span">我的关注</router-link></div>
+                    <div><router-link to="" tag="span">我的收藏</router-link></div>
+                    <div style="margin-bottom:19px;"><router-link to="" tag="span">我的草稿</router-link></div>
+                    <p></p>
+                    <div style="margin-top:30px;"><router-link to="" tag="span">购物车</router-link></div>
+                    <div><router-link to="" tag="span">订单</router-link></div>
+                    <div><router-link to="" tag="span">PIN劵</router-link></div>
+                    <div><router-link to="/cartwish" tag="span">心愿单</router-link></div> 
+                    <div style="margin-bottom:23px;"><router-link to="" tag="span">pin会员卡</router-link></div> 
+                    <p></p>
+                    <div style="margin-top:22px;"><router-link to="" tag="span">帮助与客服</router-link></div> 
+                    <div><router-link to="" tag="span">设置</router-link></div> 
+                </van-col>
+                <van-col span="10"></van-col>
+
+            </van-row>
         </van-popup>   
 
 
@@ -88,7 +95,6 @@ export default {
              this.$router.push("/followdetail/"+id)
         },
         btn(){
-            console.log("aaa")
             this.show =true
         }
     },

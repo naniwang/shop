@@ -1,7 +1,7 @@
 <template>
 <div class="container">
     <van-row type="flex" justify="center" class="biaoti">
-        <van-col span="6" class="biaoti" style="color:#888888;font-size:28px;margin-top: -20px;
+        <van-col span="6" class="biaoti" style="color:#888888;font-size:24px;margin-top: -20px;
     margin-bottom: 30px;">请注册</van-col> 
     </van-row>
    <van-cell-group>
@@ -11,7 +11,22 @@
         placeholder="请输入用户名"
         ref="yhm"
         />
-       
+        <van-field
+            v-model="phone"
+            label="手机号"
+            placeholder="请输入手机号"
+        />
+       <van-cell-group>
+            <van-field
+                v-model="sms"
+                center
+                clearable
+                label="短信验证码"
+                placeholder="请输入短信验证码"
+            >
+            <van-button @click="btnphone()" slot="button" size="small" type="primary">发送验证码</van-button>
+            </van-field>
+        </van-cell-group>
         <van-field
             v-model="password"
             type="password"
@@ -37,6 +52,7 @@
 
 <script>
 import axios from "axios"
+import qs from "qs"
 export default {
     name:"Register",
     props:["name"],
@@ -48,14 +64,33 @@ export default {
             phone:"",
             sms:"",
             tit:"返回",
-            show:false
+            show:false,
+            ph:"",
         }
-    },
+    }, 
     mounted(){
         this.$emit("toparent",this.tit)
     },
     methods:{
-
+        btnphone(){
+           var _this = this
+            var reg = /^[1]([3-9])[0-9]{9}$/
+            if(reg.test(_this.phone)){
+                axios({
+                    method:"post",
+                    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+                    url:"http://39.97.116.110:8081/girl/sms/sendmsg.do",
+                    data:{phone:_this.phone}
+                }).then((data)=>{
+                    console.log(data.data.code)
+                    if(data.data.code == 1000){
+                        _this.ph = true
+                    }else{
+                        _this.ph = false
+                    }
+                })
+            } 
+        },
         register(){
             var _this = this
             // 调用后台数据 以及正则验证
@@ -89,14 +124,29 @@ export default {
                 mm1 = false
                 _this.password1 = ""
             }
-
-
+            var ms = null
             axios({
-                method:"get",
-                url:"http://jx.xuzhixiang.top/ap/api/reg.php",
-                params:{username:_this.username,password:_this.password},
+                header:{'Content-Type':'application/json'},
+                method:"post",
+                url:"http://39.97.116.110:8081/girl/sms/checkcode.do",
+                data:{"code":_this.sms,"phone":_this.phone}
             }).then(function(data){
-                if(data.data.code == 1 && yhm && mm && mm1){
+                if(data.data.code==1000){
+                    ms = true
+                }else{
+                    ms = false
+                }
+            })
+
+            //注册验证
+            axios({
+                header:{'Content-Type':'application/json'},
+                method:"post",
+                url:"http://39.97.116.110:8081/girl/user/register.do",
+                data:{"password":_this.password,"phone":_this.phone}
+            }).then(function(data){
+                console.log(_this.ph)
+                if(data.data.code == 1000 && yhm && mm && mm1 && _this.ph==true && ms){
                     _this.$router.push("/login")
                 }else {
                     _this.show = true

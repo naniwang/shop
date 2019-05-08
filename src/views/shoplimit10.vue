@@ -4,9 +4,21 @@
                 <van-col span="10" style="font-size:12px;">双十一同价提前购</van-col>
                 <van-col span="10">
                     <van-row type="flex" justify="space-between">
-                        <van-col span="12" style="font-size:12px;">距离结束还有</van-col>
-                        <van-col span="4" style="font-size:12px;text-align:center">3</van-col>
-                        <van-col span="4" style="font-size:12px;">小时</van-col>
+                         <van-col span="24" style="font-size:12px;width:100%;height:19px;" >
+                        <countdown
+                            v-on:start_callback="countDownS_cb(1)" 
+                            v-on:end_callback="countDownE_cb(1)" 
+                            :currentTime="new Date().getTime()" 
+                            :startTime="startTime" 
+                            :endTime="endTime" 
+                            tipTextEnd="距离时间结束" 
+                            endText="秒杀结束" 
+                            dayTxt="天" 
+                            hourTxt="时" 
+                            minutesTxt="分" 
+                            secondsTxt="秒"  >
+                        </countdown>
+                    </van-col> 
                     </van-row>
                 </van-col>
             </van-row> 
@@ -27,12 +39,15 @@
         </div>
 </template>
 <script>
+import Countdown from "vue2-countdown"
 import axios from "axios"
 export default {
     name:'shopLimit10',
     data:function(){
         return{
-            data:[]
+            data:[],
+            startTime: new Date('2019/5/8 22:00:00').getTime(), //剩余开始时间
+            endTime: new Date('2019/5/8 23:00:00').getTime() //剩余结束时间
         }
     },
     methods: {
@@ -40,6 +55,16 @@ export default {
             console.log("aa")
             this.$router.push("/shopdetail/"+id)
         }, 
+         countDownS_cb(value) {
+            console.log('callBack--'+value+'--开始倒计时结束回调');
+        },
+            countDownE_cb(value) {
+            console.log('callBack--'+value+'--活动剩余倒计时结束回调');
+            if(this.endTime <= 0) return
+        } 
+    },
+    components:{
+        Countdown
     },
     mounted(){
         var _this = this

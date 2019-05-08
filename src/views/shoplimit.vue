@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:1000">
+        <div style="position:fixed;top:0;left:0;width:100%;z-index:10000;">
             <van-row type="flex" justify="space-around" style="height:45px;background:#DDDDDD;">
                 <van-col span="7">
-                    <van-icon name="arrow-left" @click="backgo" style="width:80px;height:30px;font-size:24px;line-height:30px;text-align:center;background:white;margin-top:7px;"/>
+                    <van-icon name="arrow-left" @click="backgo()" style="width:80px;height:30px;font-size:24px;line-height:30px;text-align:center;background:white;margin-top:7px;"/>
                 </van-col>
                 <van-col span="7">
                     <van-row type="flex" justify="center">
@@ -40,28 +40,35 @@
                     </router-link>
                 </van-col>
             </van-row>
+
+             
         </div>
 
-
-         <router-view></router-view>
+        <div>
+            <router-view></router-view>
+        </div>
  
 
     </div>
 </template>
 <script>
+
+
+import Countdown from "vue2-countdown"
+
 export default {
-    name:'shopLimit',
+    name:'shopLimit', 
     methods: {
         backgo(){
             this.$router.push("/shoprecommend")
-        }
+        } 
+    },
+    mounted() {
+
     },
 }
 </script>
 <style scoped>
-/* .cla{
-     color:#8c8c8c
-} */
 #hove .router-link-active{
      color:blue
 }
