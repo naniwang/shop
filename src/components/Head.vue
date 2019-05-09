@@ -24,7 +24,7 @@ export default {
 
      },
      tap(msg){
-       console.log(msg)
+       
      }
   }
 }

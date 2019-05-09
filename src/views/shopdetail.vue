@@ -38,7 +38,7 @@
                 icon="shop-o"
                 text="店铺"
             />
-            <van-goods-action-big-btn text="加入购物车" />
+            <van-goods-action-big-btn text="加入购物车" @click="add()" />
             <van-goods-action-big-btn
                 primary
                 text="立即购买"
@@ -47,31 +47,28 @@
             />
         </van-goods-action>
 
-
-
-        <!-- <van-sku
-            v-model="showBase" 
-            /> -->
-
-            <van-sku
-  v-model="showBase"
-  :sku="sku"
-  :goods="goods"
-  :goods-id="data.pid"
-  :hide-stock="sku.hide_stock"
- :reset-stepper-on-hide="resetStepperOnHide"
-  :reset-selected-sku-on-hide="resetSelectedSkuOnHide"
-  :close-on-click-overlay="closeOnClickOverlay"
-  :disable-stepper-input="disableStepperInput"
-  :message-config="messageConfig"
-  @buy-clicked="onBuyClicked"
-  @add-cart="onAddCartClicked"
-/>
+        <van-sku
+            v-model="showBase"
+            :sku="sku"
+            :goods="goods"
+            :goods-id="data.pid"
+            :hide-stock="sku.hide_stock"
+            :reset-stepper-on-hide="resetStepperOnHide"
+            :reset-selected-sku-on-hide="resetSelectedSkuOnHide"
+            :close-on-click-overlay="closeOnClickOverlay"
+            :disable-stepper-input="disableStepperInput"
+            :initial-sku="initialSku"
+            :message-config="messageConfig"
+            @buy-clicked="onBuyClicked"
+            @add-cart="onAddCartClicked"
+        />
 
     </div> 
 </template>
 <script>
 import axios from "axios"
+import qs from "qs"
+var token = localStorage.getItem("token")
 export default {
     name:"shopDetail",
     data:function(){
@@ -82,7 +79,7 @@ export default {
             resetStepperOnHide:true,
             resetSelectedSkuOnHide:true,
             closeOnClickOverlay:true,
-            disableStepperInput:false,
+            disableStepperInput:true,
             sku: {
                 // 所有sku规格类目与其值的从属关系，比如商品有颜色和尺码两大类规格，颜色下面又有红色和蓝色两个规格值。
                 // 可以理解为一个商品可以有多个规格类目，一个规格类目下可以有多个规格值。
@@ -151,7 +148,39 @@ export default {
                     text: 'xxx',
                     tel: 'xxx',
                 }
-            }
+            },
+            initialSku:{
+                // 键：skuKeyStr（sku 组合列表中当前类目对应的 key 值）
+                // 值：skuValueId（规格值 id）
+                s1: '30349',
+                s2: '1193',
+                // 初始选中数量
+                selectedNum: 1
+            },
+            skuData: {
+                // 商品 id
+                goodsId: '946755',
+                // 留言信息
+                messages: {
+                    message_0: '12',
+                    message_1: ''
+                },
+                // 另一种格式的留言，key 不同
+                cartMessages: {
+                    '留言1': 'xxxx'
+                },
+                // 选择的商品数量
+                selectedNum: 1,
+                // 选择的 sku 组合
+                selectedSkuComb: {
+                    id: 2257,
+                    price: 100,
+                    s1: '30349',
+                    s2: '1193',
+                    s3: '0',
+                    stock_num: 111
+                }
+                }
         }
     },
     methods: {
@@ -159,29 +188,61 @@ export default {
             this.$router.go(-1)
         },
         buy(){
-            this.showBase = true
+            //立即购买
             this.sku.price = this.data.pprice
             this.goods.title= this.data.pname
             this.goods.picture= this.data.pimg
             this.sku.tree[0].v[0].imgUrl = this.data.pimg
             this.sku.tree[0].v[0].id = this.data.pid
+            if(token != null){
+                this.showBase = true
+            } else {
+                this.$router.push("/login")
+            }
+        },
+        add(){  
+            //直接加入购物车  token值传递失败
+            if(token != null){
+                axios({
+                    method:"post",
+                    url:'http://39.97.116.110:8081/girl/cart/add.do',
+                    params:{"gid": this.skuData.selectedNum,"token": token}
+                }).then(function(data){
+                     console.log("加入购物车成功")
+                }).catch(function(data){
+                    console.log("加入购物车失败")
+                })  
+            } else {
+                this.$router.push("/login")
+            }
         },
         onBuyClicked(){
-
+            
         },
         onAddCartClicked(){
-
+            //showBase显示时的加入购物车
+            axios({
+                method:"post",
+                url:'http://39.97.116.110:8081/girl/cart/add.do',
+                params:qs.stringify({"gid": this.skuData.selectedNum,"token": token})
+            }).then(function(data){
+                console.log("加入购物车成功")
+            }).catch(function(data){
+                console.log("加入购物车失败")
+            })
         }
     },
     mounted() {
         var _this = this
         axios({
+            //翔哥 数据列表展示
             method:"get",
             url:"http://jx.xuzhixiang.top/ap/api/detail.php",
             params:{id:_this.$route.params.id}
         }).then((data)=>{
             _this.data = data.data.data
         })
+      
     },
 }
 </script>

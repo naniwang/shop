@@ -76,23 +76,27 @@ export default {
            var _this = this
             var reg = /^[1]([3-9])[0-9]{9}$/
             if(reg.test(_this.phone)){
+                console.log(_this.phone)
                 axios({
                     method:"post",
-                    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+                    // headers:{'Content-Type':'application/x-www-form-urlencoded'},
                     url:"http://39.97.116.110:8081/girl/sms/sendmsg.do",
-                    data:{phone:_this.phone}
+                    data:qs.stringify({phone:_this.phone})
                 }).then((data)=>{
                     console.log(data.data.code)
-                    if(data.data.code == 1000){
-                        _this.ph = true
-                    }else{
-                        _this.ph = false
-                    }
+                    console.log(data.data.msg)
+                    // if(data.data.code == 1000){
+                    //     _this.ph = true
+                    // }else{
+                    //     _this.ph = false
+                    // }
                 })
             } 
+            console.log(this.ph)
         },
         register(){
             var _this = this
+            
             // 调用后台数据 以及正则验证
             //用户名验证
             var yhm = null
