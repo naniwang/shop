@@ -14,7 +14,7 @@ import mainFollow from "../views/mainFollow.vue"
 import followDetail from  "../views/followdetail.vue"
 import followAround from "../views/followaround.vue"
 import followFind from "../views/followFind.vue"
-// import Discuss from "../views/discuss.vue"
+import Discuss from "../views/discuss.vue"
 import Talk from "../views/talk.vue"
 import flwFindRecommend from "../views/flwfindrecommend.vue"
 import flwFindCosmetic from "../views/flwfindcosmetic.vue"
@@ -207,6 +207,11 @@ export default new Router({
       name:"Me",
       redirect:"/login",
       component:Me,
-    } 
+    } ,
+    {
+      path:"/discuss",
+      name:"Discuss",
+      component:Discuss
+    }  
   ]
 })
