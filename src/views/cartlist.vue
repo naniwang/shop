@@ -133,7 +133,7 @@ export default {
             if(this.$refs.allipt.checked == true){
                 for(var i = 0;i<this.listarr[0].length;i++){
                    this.$refs.peript[i].checked = true 
-                    this.price +=  this.listarr[0][i].price
+                    this.price +=  parseInt(this.listarr[0][i].price)
                 }
             } else {
                 for(var i = 0;i<this.listarr[0].length;i++){
