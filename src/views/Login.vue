@@ -5,9 +5,8 @@
         </van-row>
         <van-cell-group >
             <van-field
-                v-model="username"
-                clearable
-                placeholder="请输入用户名" 
+                v-model="phone"
+                placeholder="请输入手机号"
             />
             <van-field
                 v-model="password"
@@ -16,7 +15,7 @@
             />
         </van-cell-group>
         <div class="login">
-            <van-button type="primary" size="large" @click="login({username:username,password:password})" style="height:40px;background:#F4F4F4;border:none;line-height:40px;color:#8C8C8C;">登陆</van-button>
+            <van-button type="primary" size="large" @click="login({password:password,phone:phone})" style="height:40px;background:#F4F4F4;border:none;line-height:40px;color:#8C8C8C;">登陆</van-button>
             <van-row type="flex" style="margin-top:5px">
                 <van-col span="12"><button type="default" @click="forget" style="background:white;border:none;color:#888">忘记密码</button></van-col> 
                 <van-col span="12">
@@ -35,11 +34,12 @@ export default {
             username:"",
             password:"",
             tit:"返回",
+            phone:"",
+            token:""
         }
     },
     methods:{
-        ...mapActions(["login"]), 
-        
+        ...mapActions(["login"]),  
         forget(){
             this.$router.push("/forgetpassword")
         },

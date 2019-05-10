@@ -31,9 +31,11 @@ import shopLimit8 from "../views/shoplimit8.vue"
 import shopLimit9 from "../views/shoplimit9.vue"
 import shopLimit10 from "../views/shoplimit10.vue"
 import shopLimit11 from "../views/shoplimit11.vue"
-
-
-
+import cartList from "../views/cartlist.vue"
+import cartBuyList from "../views/cartbuylist.vue"
+import Setting from "../views/setting.vue"
+import followDetailX from "../views/followdetailx.vue" 
+import myselfSetting from "../views/mysetting.vue"
 
 //sue  进行挂载使用router ，全局可以使用
 Vue.use(Router)
@@ -68,12 +70,13 @@ export default new Router({
           name:'Number',
           component:Number
         },
-        {
-          path:"/phonelogin",
-          name:'Phonelogin',
-          component:Phonelogin
-        }
+        
       ]
+    },
+    {
+      path:"/phonelogin",
+      name:'Phonelogin',
+      component:Phonelogin
     },
     {
       path:"/mainindex",
@@ -205,13 +208,37 @@ export default new Router({
     {
       path:"/me",
       name:"Me",
-      redirect:"/login",
       component:Me,
     } ,
+    {
+      path:"/cartbuylist",
+      name:"cartBuyList",
+      component:cartBuyList
+    },
+    {
+      path:"/setting",
+      name:"Setting",
+      component:Setting
+    },
+    {
+      path:"/followdetailx/:id",
+      name:"followDetailX",
+      component:followDetailX
+    },
+    {
+      path:"/myselfsetting",
+      name:"myselfSetting",
+      component:myselfSetting
+    },
     {
       path:"/discuss",
       name:"Discuss",
       component:Discuss
-    }  
+    },
+    {
+      path:"/cartlist",
+      name:"cartList",
+      component:cartList
+    }
   ]
 })

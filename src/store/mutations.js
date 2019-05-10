@@ -1,6 +1,12 @@
 var mutations = {
-    login(state,username){
-        state.username = username
+    login(state,token){
+        state.token = token
+    },
+    loginPhone(state,phone){
+        state.phone = phone
+    },
+    numberbtn(state,value){
+        state.value = value
     }
 }
 

@@ -46,13 +46,13 @@
     </van-row>
     <van-row span="24" style="margin-bottom:20px">
         <van-col span="24">
-            <img :src="list.pimg" style="width:100%;height:240px"/>
+            <img :src="'http://39.97.116.110:8081/webapp/media/images/goods/'+list.imgPath" style="width:100%;height:240px"/>
         </van-col>
     </van-row>
     <van-row span="24" style="margin-bottom:20px">
         <van-col span="4"></van-col>
         <van-col offset="2" span="16">
-            <span>{{list.pdesc}}</span>
+            <span>{{list.goodsName}}</span>
         </van-col>
         <van-col span="4"></van-col>
     </van-row>
@@ -98,6 +98,7 @@
 </template>
 <script>
 import axios from "axios"
+import qs from "qs"
 export default {
     name:"followDetail",
     data:function(){
@@ -110,12 +111,13 @@ export default {
     },
     mounted() {
         var _this = this
+        console.log(this.$route.params.id)
         axios({
-            method:"get",
-            url:"http://jx.xuzhixiang.top/ap/api/detail.php",
-            params:{id:_this.$route.params.id},
+            method:"post",
+            url:"http://39.97.116.110:8081/girl/goods/infos.do",
+            data:qs.stringify({gid:_this.$route.params.id})
         }).then((data)=>{
-            _this.list = data.data
+            _this.list = data.data.data
         })
     },
     methods: {

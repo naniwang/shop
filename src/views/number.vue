@@ -8,7 +8,17 @@
             :mask="false"
             @focus="showKeyboard = true"
         />
-        <van-button type="primary" size="large" @click="btn" style="height:40px;background:#F4F4F4;border:none;line-height:40px;color:#8C8C8C;margin-top:40px;margin-bottom:12px;">确定</van-button> 
+        <!-- 数字键盘 -->
+        <van-number-keyboard
+        :show="showKeyboard"
+        @input="onInput"
+        @delete="onDelete"
+        @blur="showKeyboard = false"
+        />
+
+
+
+        <van-button type="primary" size="large" @click="numberbtn({number:value})" style="height:40px;background:#F4F4F4;border:none;line-height:40px;color:#8C8C8C;margin-top:40px;margin-bottom:12px;">确定</van-button> 
         <van-row type="flex" justify="space-between" style="margin-top:5px">
                 <van-col span="12"><button type="default" @click="forget" style="background:white;border:none;color:#888">忘记密码</button></van-col> 
                 <van-col span="12"><router-link to="/login" style="color:#888;float:right">密码登陆</router-link></van-col>
@@ -17,15 +27,19 @@
 </template>
 
 <script>
+import {mapActions} from "vuex"
+
 export default {
     name:"Number",
     data:function(){
         return{
             value:"",
-            tit:"返回"
+            tit:"返回",
+            showKeyboard: true
         }
     },
     methods: {
+        ...mapActions(["numberbtn"]),
         btn(){
             this.$router.push("/index")
         },
@@ -34,6 +48,12 @@ export default {
         },
         passwordlogin(){
             this.$router.push("/login")  
+        },
+        onInput(key) {
+        this.value = (this.value + key).slice(0, 6);
+        },
+        onDelete() {
+        this.value = this.value.slice(0, this.value.length - 1);
         }
     }
 }

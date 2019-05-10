@@ -3,7 +3,9 @@
     <van-nav-bar
         title="消息"
         left-text="菜单"
+        right-text="首页"
         @click-left="onClickLeft"
+        @click-right="onClickRight"
     />
     <van-popup v-model="show" position="left" :overlay="true" style="width:80%;height:100%" class="more">
         <van-row type="flex" justify="sapce-between">
@@ -57,6 +59,9 @@ export default {
     methods: {
         onClickLeft(){
             this.show = true
+        },
+        onClickRight(){
+            this.$router.push("/mainindex")
         }
     },
 }

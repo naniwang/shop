@@ -6,11 +6,11 @@
         <van-cell-group> 
             <van-field
                 clearable
-                v-model="phone" 
+                v-model="loginphone" 
                 placeholder="请输入手机号" 
             />
         </van-cell-group>
-        <van-button type="primary" size="large" @click="btn" style="height:40px;background:#F4F4F4;border:none;line-height:40px;color:#8C8C8C;margin-top:40px;margin-bottom:12px;">发送验证码</van-button>
+        <van-button type="primary" size="large" @click="loginPhone({phone:loginphone})" style="height:40px;background:#F4F4F4;border:none;line-height:40px;color:#8C8C8C;margin-top:40px;margin-bottom:12px;">发送验证码</van-button>
         <van-row type="flex" justify="center">
             <van-col span="24" style="text-align:center;color:#888888;">
                 <router-link to="/forgetpassword" tag="span">重新发送</router-link>
@@ -20,22 +20,17 @@
     </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
 export default {
     name:"Forgetpassword",
     data:function(){
         return{
-            phone:"",
+            loginphone:"",
             tit:"返回"
         }
     },
     methods: {
-        btn(){
-            this.$router.push("/number")
-        },
-        send(){
-            this.$router.push("/forgetpassword")
-        }
-
+        ...mapActions(["loginPhone"]) 
     },
 }
 </script>

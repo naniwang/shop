@@ -79,17 +79,15 @@ export default {
                 console.log(_this.phone)
                 axios({
                     method:"post",
-                    // headers:{'Content-Type':'application/x-www-form-urlencoded'},
+                    headers:{'Content-Type':'application/x-www-form-urlencoded'},
                     url:"http://39.97.116.110:8081/girl/sms/sendmsg.do",
                     data:qs.stringify({phone:_this.phone})
                 }).then((data)=>{
-                    console.log(data.data.code)
-                    console.log(data.data.msg)
-                    // if(data.data.code == 1000){
-                    //     _this.ph = true
-                    // }else{
-                    //     _this.ph = false
-                    // }
+                    if(data.data.code == 1000){
+                        _this.ph = true
+                    }else{
+                        _this.ph = false
+                    }
                 })
             } 
             console.log(this.ph)
@@ -130,11 +128,12 @@ export default {
             }
             var ms = null
             axios({
-                header:{'Content-Type':'application/json'},
+                header:{'Content-Type':'application/json;charset=UTF-8'},
                 method:"post",
                 url:"http://39.97.116.110:8081/girl/sms/checkcode.do",
-                data:{"code":_this.sms,"phone":_this.phone}
+                data:qs.stringify({'code':_this.sms,'phone':_this.phone})
             }).then(function(data){
+                console.log(data)
                 if(data.data.code==1000){
                     ms = true
                 }else{
@@ -144,11 +143,12 @@ export default {
 
             //注册验证
             axios({
-                header:{'Content-Type':'application/json'},
+                header:{'Content-Type':'application/json;charset=UTF-8'},
                 method:"post",
                 url:"http://39.97.116.110:8081/girl/user/register.do",
-                data:{"password":_this.password,"phone":_this.phone}
+                data:qs.stringify({'password':_this.password,'phone':_this.phone})
             }).then(function(data){
+                console.log(data.data.msg)
                 console.log(_this.ph)
                 if(data.data.code == 1000 && yhm && mm && mm1 && _this.ph==true && ms){
                     _this.$router.push("/login")

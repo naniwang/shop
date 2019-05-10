@@ -5,7 +5,7 @@
             <van-col span="4">
                 <van-row type="flex">
                     <van-col span="4" style="width:39px;height:39px;border:1px solid #cecece;margin-top:1px;margin-left:8px;border-radius:50%;background:white;">
-                        
+                        <img style="width:39px;height:39px;border:none;border-radius:50%;" @click="btn()" src="http://39.97.116.110:8081/webapp/media/images/73291794_p0_master1200.jpg">
                     </van-col>
                 </van-row>
             </van-col> 
@@ -23,6 +23,32 @@
         <van-tabbar-item style="font-size:20px" to="/me">我</van-tabbar-item>
     </van-tabbar>
 
+
+
+
+     <van-popup v-model="show" position="left" :overlay="true" style="width:80%;height:100%" class="more">
+            <van-row type="flex" justify="sapce-between">
+                <van-col span="4"></van-col>
+                <van-col>
+                    <div style="width:150px;height:30px;margin-left:50px;line-height:30px;font-size:20px;margin-top:35px;margin-bottom:30px;">更多</div>
+                    <div><router-link to="" tag="span">我的关注</router-link></div>
+                    <div><router-link to="" tag="span">我的收藏</router-link></div>
+                    <div style="margin-bottom:19px;"><router-link to="" tag="span">我的草稿</router-link></div>
+                    <p></p>
+                    <div style="margin-top:30px;"><router-link to="/cartlist" tag="span">购物车</router-link></div>
+                    <div><router-link to="" tag="span">订单</router-link></div>
+                    <div><router-link to="" tag="span">PIN劵</router-link></div>
+                    <div><router-link to="/cartwish" tag="span">心愿单</router-link></div> 
+                    <div style="margin-bottom:23px;"><router-link to="" tag="span">pin会员卡</router-link></div> 
+                    <p></p>
+                    <div style="margin-top:22px;"><router-link to="" tag="span">帮助与客服</router-link></div> 
+                    <div><router-link to="" tag="span">设置</router-link></div> 
+                </van-col>
+                <van-col span="10"></van-col>
+
+            </van-row>
+        </van-popup>   
+
     </div>
 
 
@@ -33,13 +59,28 @@ export default {
     data:function(){
         return{
             value:"",
-            active:0
+            active:0,
+            show:false
         }
-    }    
+    }  ,
+    methods: {
+        btn(){
+            this.show =true
+        }
+    },  
 }
 </script>
 <style scoped>
 .van-search .van-cell{
     padding:0 10px 0 0
 }
+.more span{
+    font-size: 14px;
+    height:30px;
+    line-height: 30px;
+    margin-left: 76px;
+    margin-bottom:10px;
+    color:#8C8C8C;
+    height:30px;
+} 
 </style>

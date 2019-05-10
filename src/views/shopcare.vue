@@ -8,11 +8,11 @@
 
      <van-row type="flex" style="flex-wrap:wrap" justify="space-between">
         <van-col v-for="(item, index) in list1" :key="index" style="width:48%;height:210px;padding:8px 14px;font-size:12px">
-            <router-link :to="'shopdetail/'+item.pid" tag="div">
-                <img style="width:100%;height:120px" :src="item.pimg">
-                <p>{{item.pdesc}}</p>
-                <span>{{item.pname}}</span>
-                <i>{{"￥"+item.pprice}}</i>
+            <router-link :to="'shopdetail/'+item.gid" tag="div">
+                <img style="width:100%;height:120px" :src="'http://39.97.116.110:8081/webapp/media/images/goods/'+item.gimg">
+                <p>{{item.gname}}</p>
+                <span>{{item.sname}}</span>
+                <i>{{"￥"+item.price}}</i>
             </router-link>
         </van-col>
     </van-row>
@@ -38,12 +38,12 @@ export default {
         }).then(function(data){
             _this.list = data.data.data
         }),
+
         axios({
             method:"get",
-            url:"http://jx.xuzhixiang.top/ap/api/productlist.php",
-            params:{uid:2064}
+            url:"http://39.97.116.110:8081/girl/goods/salenine.do",
         }).then((data)=>{
-            _this.list1 = data.data.data
+            _this.list1 = data.data.data.slice(0,8)
         })
 
     },

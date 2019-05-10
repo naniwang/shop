@@ -2,16 +2,16 @@
     <div>
         <div class="container" style="position:relative;"> 
             <van-icon class="leftIcon" @click="backgo"  name="arrow-left" style= "font-weight:900;position:absolute;top:19px;left:14px;"/>
-            <img style="width:100%;height:380px;" :src="'http://39.97.116.110:8081/webapp/media/images/goods/'+ data.imgPath">
+            <img style="width:100%;height:380px;" :src=" data.pimg">
         </div>
         <div style="background:#F8F8F8 100%;margin-bottom:16px;">
             <van-row type="flex" justify="space-around">
-                <van-col span="16"><i>{{"￥"+data.price}}</i></van-col>
+                <van-col span="16"><i>{{"￥"+data.pprice}}</i></van-col>
                 <van-col span="4"></van-col>
             </van-row>
             <van-row type="flex" justify="space-around" style="margin-top:5px;">
-                <van-col span="16" style="line-height:29px">{{data.goodsName}}</van-col>
-                <van-col span="4"><router-link :to="'/cartwish/'+data.gid" tag="div" style="width:60px;height:29px;font-size:14px;background:#E8E8E8 100%;line-height:29px;text-align:center;">心愿单</router-link></van-col>
+                <van-col span="16" style="line-height:29px">{{data.pname}}</van-col>
+                <van-col span="4"><router-link :to="'/cartwish/'+data.pid" tag="div" style="width:60px;height:29px;font-size:14px;background:#E8E8E8 100%;line-height:29px;text-align:center;">心愿单</router-link></van-col>
             </van-row>
             <van-row type="flex" justify="space-around" style="margin-top:5px;margin-bottom:6px;">
                 <van-col span="16" style="line-height:29px"></van-col>
@@ -73,7 +73,7 @@ import axios from "axios"
 import qs from "qs"
 var token = localStorage.getItem("token")
 export default {
-    name:"shopDetail",
+    name:"flwDetailX",
     data:function(){
         return{
             pernum:"",
@@ -196,16 +196,9 @@ export default {
             this.$router.go(-1)
         },
         buy(data){
-            this.sku.price = this.data.price
-            this.goods.title= this.data.goodsName
-            this.goods.picture='http://39.97.116.110:8081/webapp/media/images/goods/'+ this.data.imgPath
-            this.sku.tree[0].v[1].imgUrl = 'http://39.97.116.110:8081/webapp/media/images/goods/'+ this.data.imgPath
-            this.sku.tree[0].v[0].imgUrl = 'http://39.97.116.110:8081/webapp/media/images/goods/'+ this.data.imgPath
-            this.sku.tree[0].v[1].id = this.data.gid
-            var _this = this
             if(token != null){
-                //此处 立即购买 
-                this.showBase = true 
+                ///此处少一步 立即购买
+                
             } else {
                 this.$router.push("/login")
             }
@@ -213,53 +206,47 @@ export default {
         add(data){  
             //直接加入购物车  
             var _this = this
-            this.sku.price = this.data.price
-            this.goods.title= this.data.goodsName
-            this.goods.picture='http://39.97.116.110:8081/webapp/media/images/goods/'+ this.data.imgPath
-            this.sku.tree[0].v[1].imgUrl = 'http://39.97.116.110:8081/webapp/media/images/goods/'+ this.data.imgPath
-            this.sku.tree[0].v[0].imgUrl = 'http://39.97.116.110:8081/webapp/media/images/goods/'+ this.data.imgPath
-            this.sku.tree[0].v[1].id = this.data.gid
+            this.sku.price = this.data.pprice
+            this.goods.title= this.data.pname
+            this.goods.picture=this.data.pimg
+            this.sku.tree[0].v[1].imgUrl = this.data.pimg
+            this.sku.tree[0].v[0].imgUrl = this.data.pimg
+            this.sku.tree[0].v[1].id = this.data.pid
             if(token != null){
-                // this.showBase = true
-                axios({
-                    method:"post",
-                    url:'http://39.97.116.110:8081/girl/cart/add.do',
-                    params:{"gid":_this.id,"token": token}
-                }).then(function(data){
-                     console.log("加入购物车成功")
-                }).catch(function(data){
-                    console.log("加入购物车失败")
-                })  
+                this.showBase = true
             } else {
                 this.$router.push("/login")
             }
         },
         onBuyClicked(data){
-            var _this = this
-            console.log(data.selectedNum) 
-            console.log(Number(_this.id))
-            console.log(token)
-            axios({
-                    method:"post",
-                    url:"http://39.97.116.110:8081/girl/order/save.do",
-                    data:qs.stringify({ids:[_this.id],nums:[Number(data.selectedNum)],toekn:token})
-                }).then((data)=>{
-                    console.log(data)
-                })
-
+            // console.log(data.selectedNum)
+            
 
         },
         onAddCartClicked(data){
             var _this = this
-
+            console.log(data.selectedNum)
+            console.log(this.id)
             //showBase显示时的加入购物车
-            console.log(this.$router)
+            // console.log(this.$router)
             axios({
-                method:"post",
-                url:'http://39.97.116.110:8081/girl/cart/add.do',
-                params:qs.stringify({"gid":_this.id,"token": token})
+                method:"get",
+                url:'http://jx.xuzhixiang.top/ap/api/add-product.php',
+                params:{uid:199501115018,pid:_this.id,pnum:data.selectedNum}
             }).then(function(data){
-                console.log("加入购物车成功")
+                console.log(data)
+                // axios({
+                //     method:"get",
+                //     url:'http://jx.xuzhixiang.top/ap/api/cart-update-num.php',
+                //     params:{uid:'199501115018',pid:_this.id,pnum:data.selectedNum}
+                // }).then(function(data){
+                //     if(data){
+                //         _this.$router.push("/cartlist")
+                //         console.log("更新成功")
+                //     }
+                // }).catch(function(data){
+                //     console.log("更新失败")
+                // })
             }).catch(function(data){
                 console.log("加入购物车失败")
             })
@@ -272,9 +259,9 @@ export default {
         var _this = this
         this.id = this.$route.params.id
         axios({
-            method:"post",
-            url:"http://39.97.116.110:8081/girl/goods/infos.do",
-            data:qs.stringify({gid:_this.$route.params.id})
+            method:"get",
+            url:"http://jx.xuzhixiang.top/ap/api/detail.php",
+            params:{id:_this.$route.params.id}
         }).then((data)=>{
             _this.data = data.data.data
         })

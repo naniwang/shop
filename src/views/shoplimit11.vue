@@ -26,14 +26,13 @@
             <van-card
                 v-for="(item, index) in data" :key="index"
                 num="2"
-                :price="item.pprice"
-                :desc="item.pdesc"  
-                :title="item.pname"
-                :thumb="item.pimg"
+                :price="item.price"
+                :desc="item.sname"  
+                :title="item.gname"
+                :thumb="'http://39.97.116.110:8081/webapp/media/images/goods/'+item.gimg"
             >
                 <div slot="footer">
-                    <van-button size="mini">按钮</van-button>
-                    <van-button to="'/shopdetail/'+item.pid"  @click="shopdetail(item.pid)" size="mini">马上抢</van-button>
+                    <van-button :to="'/shopdetail/'+item.gid"  @click="btn(item.pid)" size="mini">马上抢</van-button>
                 </div>
             </van-card>
         </div>
@@ -67,13 +66,13 @@ export default {
         Countdown
     },
     mounted(){
-        var _this = this
+       var _this = this
         axios({
             method:"get",
-            url:"http://jx.xuzhixiang.top/ap/api/productlist.php",
-            params:{uid:2064}
-        }).then(function(data){
-            _this.data = data.data.data
+            url:"http://39.97.116.110:8081/girl/goods/salenine.do",
+        }).then((data)=>{
+            console.log(data.data.data)
+            _this.data = data.data.data.slice(0,8)
         })
     }
 }

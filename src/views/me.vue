@@ -1,7 +1,7 @@
 <template>
 	<div id="my">
 		<div class="head">
-			<span>菜单</span>
+			<router-link to="/mainindex" tag="span">首页</router-link>
 		    <p>昵称</p>
 		    <span>分享</span>
 		</div>
